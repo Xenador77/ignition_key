@@ -30,17 +30,10 @@ fi
 
 
 BLUE "Updating repositories..."
-sudo apt update
+sudo apt update && sudo apt dist-upgrade -y && apt moo
 
 BLUE "Installing git..."
 sudo apt install -y git
-
-BLUE "Installing Sublime Text..." # according to https://www.sublimetext.com/docs/3/linux_repositories.html-
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-sudo apt-get install -y apt-transport-https
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-sudo apt-get update
-sudo apt-get install -y sublime-text
 
 BLUE "Installing terminator..."
 sudo apt install -y terminator
@@ -48,26 +41,11 @@ sudo apt install -y terminator
 BLUE "Setting terminator as the default terminal emulator..."
 sed -i s/Exec=gnome-terminal/Exec=terminator/g /usr/share/applications/gnome-terminal.desktop
 
-BLUE "Forcing a color prompt in ~/.bashrc..."
-grep "export PS1" ~/.bashrc
-if [ $? -eq 1 ]
-then
-	echo "export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> ~/.bashrc
-fi
-
-BLUE "Installing SimpleScreenRecorder..."
-echo "" | sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
-sudo apt-get update
-sudo apt-get install -y simplescreenrecorder
-
-BLUE "Installing task..."
-sudo apt-get install -y taskwarrior
-
 BLUE "Installing pip..."
 sudo apt-get install -y python-pip
 
 BLUE "Removing boilerplate home directories..."
-rmdir ~/Desktop ~/Documents ~/Downloads ~/Music ~/Pictures ~/Public ~/Templates ~/Videos
+rmdir ~/Documents ~/Music ~/Templates ~/Videos
 
 BLUE "Installing guake..."
 sudo apt-get install -y guake
@@ -117,11 +95,6 @@ if [ $? -eq 1 ]
 then
 	echo "systemctl start vncserver-x11-serviced.service" >> ~/etc/rc.local
 fi
-
-BLUE "Installing Atom..."
-wget "https://atom.io/download/deb" -O atom.deb
-dpkg -i atom.deb
-rm atom.deb
 
 BLUE "Installing python-requests..."
 pip install requests
@@ -203,15 +176,6 @@ sudo apt install -y pdfcrack
 BLUE "Installing Virtualbox..."
 sudo apt install -y virtualbox-qt
 
-BLUE "Installing Vagrant..."
-sudo apt install -y vagrant
-
-BLUE "Installing Hopper..."
-wget "https://d2ap6ypl1xbe4k.cloudfront.net/Hopper-v4-4.3.14-Linux.deb"
-dpkg -i Hopper-v4-4.3.14-Linux.deb
-rm Hopper-v4-4.3.14-Linux.deb
-
-
 BLUE "Installing Oracle Java 8..."
 echo "" | sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
@@ -270,3 +234,9 @@ sudo apt install libcompress-raw-lzma-perl
 
 BLUE "Installing dos2unix..."
 sudo apt install libcompress-raw-lzma-perl
+
+BLUE "Installing ZSH"
+sudo apt install zsh
+
+BLUE "Making it look good"
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
