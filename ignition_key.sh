@@ -32,6 +32,12 @@ fi
 BLUE "Updating repositories..."
 sudo apt update && sudo apt dist-upgrade -y && apt moo
 
+BLUE "installing zsh"
+sudo apt install -y zsh
+
+RED "Moo-ing"
+apt moo
+
 BLUE "Installing git..."
 sudo apt install -y git
 
@@ -63,9 +69,6 @@ sudo usermod -aG docker `logname`
 
 BLUE "Installing curl..."
 sudo apt-get install -y curl
-
-BLUE "Installing pinta..."
-sudo apt-get install -y pinta
 
 BLUE "Installing exiftool..."
 sudo apt-get install -y exiftool
@@ -104,10 +107,10 @@ sudo apt install -y idle
 
 BLUE "Installing xclip..."
 sudo apt install -y xclip
-grep "alias xclip" ~/.bashrc
+grep "alias xclip" ~/.zshrc
 if [ $? -eq 1 ]
 then
-	echo "alias xclip='xclip -selection clipboard'" >> ~/.bashrc
+	echo "alias xclip='xclip -selection clipboard'" >> ~/.zshrc
 fi
 
 BLUE "Installing Python flask..."
@@ -145,17 +148,17 @@ sudo pip install pwntools
 
 BLUE "Installing Go..."
 sudo apt install -y golang-go
-BLUE "Adding GOPATH and GOBIN to .bashrc, so future installs are easy.."
-grep "export GOPATH" ~/.bashrc
+BLUE "Adding GOPATH and GOBIN to .zshrc, so future installs are easy.."
+grep "export GOPATH" ~/.zshrc
 if [ $? -eq 1 ]
 then
-	echo "export GOPATH=\$HOME/.go/" >> ~/.bashrc
+	echo "export GOPATH=\$HOME/.go/" >> ~/.zshrc
 fi
-grep "export GOBIN" ~/.bashrc
+grep "export GOBIN" ~/.zshrc
 if [ $? -eq 1 ]
 then
-	echo "export GOBIN=\$HOME/.go/bin" >> ~/.bashrc
-	echo "export PATH=\$PATH:\$GOBIN" >> ~/.bashrc
+	echo "export GOBIN=\$HOME/.go/bin" >> ~/.zshrc
+	echo "export PATH=\$PATH:\$GOBIN" >> ~/.zshrc
 fi
 
 BLUE "Installing sqlite..."
@@ -235,8 +238,8 @@ sudo apt install libcompress-raw-lzma-perl
 BLUE "Installing dos2unix..."
 sudo apt install libcompress-raw-lzma-perl
 
-BLUE "Installing ZSH"
-sudo apt install zsh
-
-BLUE "Making it look good"
+BLUE "Oh! my zsh"
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+RED "Done son"
+apt moo
