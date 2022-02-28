@@ -56,9 +56,6 @@ rmdir ~/Documents ~/Music ~/Templates ~/Videos
 BLUE "Installing guake..."
 sudo apt-get install -y guake
 
-BLUE "Installing openvpn..."
-sudo apt-get install -y openvpn
-
 BLUE "Installing nmap..."
 sudo apt-get install -y nmap
 
@@ -241,5 +238,7 @@ sudo apt install libcompress-raw-lzma-perl
 BLUE "Oh! my zsh"
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+BLUE "Ropper dependencies"
+sudo pip install capstone filebytes keystone-engine pyvex ropper ROPgadget
 RED "Done son"
 apt moo
