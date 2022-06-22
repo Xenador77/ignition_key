@@ -102,14 +102,6 @@ pip install requests
 BLUE "Installing idle..."
 sudo apt install -y idle
 
-BLUE "Installing xclip..."
-sudo apt install -y xclip
-grep "alias xclip" ~/.zshrc
-if [ $? -eq 1 ]
-then
-	echo "alias xclip='xclip -selection clipboard'" >> ~/.zshrc
-fi
-
 BLUE "Installing Python flask..."
 sudo pip install flask
 
@@ -181,10 +173,6 @@ echo "" | sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install -y oracle-java8-installer
 
-BLUE "Downloading stegsolve.jar..."
-wget "http://www.caesum.com/handbook/Stegsolve.jar" -O "stegsolve.jar"
-chmod +x "stegsolve.jar"
-
 BLUE "Installing fcrackzip..."
 sudo apt install -y fcrackzip
 
@@ -242,3 +230,5 @@ BLUE "Ropper dependencies"
 sudo pip install capstone filebytes keystone-engine pyvex ropper ROPgadget
 RED "Done son"
 apt moo
+apt autoremove -y
+
